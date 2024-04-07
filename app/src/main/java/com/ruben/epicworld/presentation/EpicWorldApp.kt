@@ -1,5 +1,6 @@
 package com.ruben.epicworld.presentation
 
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavType
@@ -27,41 +28,43 @@ fun EpicWorldApp(
 ) {
     val navController = rememberNavController()
     val actions = remember(navController) { Actions(navController) }
-    NavHost(navController = navController, startDestination = Home) {
-        composable(Home) {
-            HomeScreen(
-                openSearch = actions.openSearch,
-                openFilters = actions.openFilter,
-                openGameDetails = actions.openGameDetails
-            )
-        }
-        composable(
-            "$GameDetails/{$GameId}",
-            arguments = listOf(
-                navArgument(GameId) { type = NavType.IntType }
-            )
-        ) {
-            GameDetailsScreen(
-                navigateBack = actions.navigateBack,
-                openGameTrailer =  actions.openGameVideos
-            )
-        }
-        composable(
-            "$GameVideos/{${GameIdVideo}}",
-            arguments = listOf(
-                navArgument(GameIdVideo) { type = NavType.IntType }
-            )
-        ) {
-            GameVideosScreen(
-                navigateBack = actions.navigateBack,
-                onFullScreenToggle = onFullScreenToggle
-            )
-        }
-        composable(Search) {
-            GameSearchScreen(
-                navigateToDetails = actions.openGameDetails,
-                navigateBack = actions.navigateBack
-            )
+    Surface {
+        NavHost(navController = navController, startDestination = Home) {
+            composable(Home) {
+                HomeScreen(
+                    openSearch = actions.openSearch,
+                    openFilters = actions.openFilter,
+                    openGameDetails = actions.openGameDetails
+                )
+            }
+            composable(
+                "$GameDetails/{$GameId}",
+                arguments = listOf(
+                    navArgument(GameId) { type = NavType.IntType }
+                )
+            ) {
+                GameDetailsScreen(
+                    navigateBack = actions.navigateBack,
+                    openGameTrailer =  actions.openGameVideos
+                )
+            }
+            composable(
+                "$GameVideos/{${GameIdVideo}}",
+                arguments = listOf(
+                    navArgument(GameIdVideo) { type = NavType.IntType }
+                )
+            ) {
+                GameVideosScreen(
+                    navigateBack = actions.navigateBack,
+                    onFullScreenToggle = onFullScreenToggle
+                )
+            }
+            composable(Search) {
+                GameSearchScreen(
+                    navigateToDetails = actions.openGameDetails,
+                    navigateBack = actions.navigateBack
+                )
+            }
         }
     }
 }
