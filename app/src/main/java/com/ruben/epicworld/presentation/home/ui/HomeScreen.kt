@@ -2,6 +2,7 @@ package com.ruben.epicworld.presentation.home.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -125,7 +126,11 @@ private fun GameListing(paddingValues: PaddingValues, openGameDetails: (Int) -> 
         is ScreenState.Success -> {
             val lazyGameItems = state.games?.collectAsLazyPagingItems()
             lazyGameItems?.let { gameItems ->
-                LazyVerticalGrid(modifier = Modifier.padding(paddingValues), columns = GridCells.Fixed(count = 2), content = {
+                LazyVerticalGrid(
+                    contentPadding = PaddingValues(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    modifier = Modifier.padding(paddingValues), columns = GridCells.Fixed(count = 2), content = {
                     items(gameItems.itemCount) { index ->
                         gameItems[index]?.let {
                             GameItem(game = it, gameClick = openGameDetails)
@@ -164,7 +169,6 @@ private fun GameItem(game: GameResultEntity, gameClick: (Int) -> Unit) {
         elevation = 20.dp,
         backgroundColor = EpicWorldTheme.colors.background,
         modifier = Modifier
-            .padding(16.dp)
             .clip(RoundedCornerShape(10.dp))
             .height(250.dp)
             .fillMaxWidth()
