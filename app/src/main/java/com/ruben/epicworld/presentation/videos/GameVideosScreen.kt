@@ -1,6 +1,7 @@
 package com.ruben.epicworld.presentation.videos
 
 import android.content.res.Configuration
+import androidx.annotation.OptIn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -46,9 +47,10 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
+import androidx.media3.common.C
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.exoplayer.ExoPlayer
 import coil.compose.rememberImagePainter
-import com.google.android.exoplayer2.C
-import com.google.android.exoplayer2.ExoPlayer
 import com.ruben.epicworld.R
 import com.ruben.epicworld.domain.entity.gamevideos.GameVideosEntity
 import com.ruben.epicworld.domain.entity.gamevideos.PlayerWrapper
@@ -127,6 +129,7 @@ fun GameVideosScreen(
     }
 }
 
+@OptIn(UnstableApi::class)
 @Composable
 private fun ShowGameVideos(
     getGameVideosEntity: () -> GameVideosEntity,

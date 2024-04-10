@@ -33,7 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.android.exoplayer2.Player.STATE_ENDED
+import androidx.media3.common.Player.STATE_ENDED
 import com.ruben.epicworld.R
 import com.ruben.epicworld.presentation.theme.EpicWorldTheme
 import com.ruben.epicworld.presentation.utility.formatMinSec
@@ -138,7 +138,7 @@ fun PlayerControls(
                     Image(
                         modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop,
-                        painter = painterResource(id = com.google.android.exoplayer2.ui.R.drawable.exo_ic_skip_previous),
+                        painter = painterResource(id = androidx.media3.ui.R.drawable.exo_ic_skip_previous),
                         contentDescription = stringResource(id = R.string.play_previous)
                     )
                 }
@@ -166,13 +166,13 @@ fun PlayerControls(
                             id =
                             when {
                                 playing -> {
-                                    com.google.android.exoplayer2.ui.R.drawable.exo_ic_pause_circle_filled
+                                    androidx.media3.ui.R.drawable.exo_ic_pause_circle_filled
                                 }
                                 playing.not() && playerState == STATE_ENDED -> {
                                     R.drawable.ic_replay
                                 }
                                 else -> {
-                                    com.google.android.exoplayer2.ui.R.drawable.exo_ic_play_circle_filled
+                                    androidx.media3.ui.R.drawable.exo_ic_play_circle_filled
                                 }
                             }
                         ),
@@ -199,7 +199,7 @@ fun PlayerControls(
                     Image(
                         modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop,
-                        painter = painterResource(id = com.google.android.exoplayer2.ui.R.drawable.exo_ic_skip_next),//R.drawable.ic_skip_next
+                        painter = painterResource(id = androidx.media3.ui.R.drawable.exo_ic_skip_next),//R.drawable.ic_skip_next
                         contentDescription = stringResource(id = R.string.play_next)
                     )
                 }
@@ -297,9 +297,9 @@ fun PlayerControls(
                             contentScale = ContentScale.Crop,
                             painter = painterResource(
                                 id = if (isFullScreen) {
-                                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_fullscreen_exit
+                                    androidx.media3.ui.R.drawable.exo_legacy_controls_fullscreen_exit
                                 } else {
-                                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_fullscreen_enter
+                                    androidx.media3.ui.R.drawable.exo_legacy_controls_fullscreen_enter
                                 }
                             ),
                             contentDescription = stringResource(id = R.string.toggle_full_screen)
